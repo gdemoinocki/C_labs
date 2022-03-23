@@ -1,0 +1,30 @@
+#include <math.h>
+#include <stdio.h>
+int main()
+{
+    float a, b, x;
+    printf("Enter a -> ");
+    scanf("%f", &a);
+    printf("Enter b -> ");
+    scanf("%f", &b);
+    printf("Enter x -> ");
+    scanf("%f", &x);
+
+    if (!a && !b && !x)
+        return 0;
+
+    float z,s;
+  
+      z=a-x;
+      s=b+x;
+    
+    if (z > s)
+    printf("%f", z);
+    if (s > z)
+    printf("%f", s);
+    if (z == s)
+    {
+        printf("parameters are equal\n");
+    }
+    return 0;
+}
