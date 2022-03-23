@@ -14,10 +14,10 @@ int main()
         return 0;
 
     float z,s;
-  
-      z=a-x;
-      s=b+x;
-    
+
+      z=(a>b)?a-x:b-x;
+      s=(a>b)?a+x:b+x;
+
     if (z > s)
     printf("%f", z);
     if (s > z)
