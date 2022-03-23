@@ -13,18 +13,22 @@ int main()
     if (!a && !b && !x)
         return 0;
 
-    float x = 1.0f;
-    printf("f(x) = ");
-    if (a>b)
+    float z,s;
+    if (a > b)
     {
-        printf("%f * z= ", a-x || b+x);
+      z=a-x;
+      s=b+x;
     }
-    if (b>a)
+    if (a < b)
     {
-        printf("%f * z= ", b-x || a+x);
+      z=b-x;
+      s=a+x;
     }
-   
-    if (a=b)
+    if (z > s)
+    printf("%f", z);
+    if (s > z)
+    printf("%f", s);
+    if (z == s)
     {
         printf("parameters are equal\n");
     }
