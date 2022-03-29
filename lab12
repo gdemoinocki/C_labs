@@ -9,11 +9,10 @@ int main()
     scanf("%f", &b);
     printf("Enter x -> ");
     scanf("%f", &x);
-
     if (!a && !b && !x)
         return 0;
-      float z=((a>b)?a:b)-x;
-      float s=((a<b)?a:b)+x;
+        float z = ((a > b) ? a : b) - x;
+        float s = ((a < b) ? a : b) + x;
     if (z > s)
      printf("%f", z);
     if (s > z)
