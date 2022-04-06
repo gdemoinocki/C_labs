@@ -3,9 +3,9 @@
 int main()
 {
     double x;
-    printf("Enter x { -1.0 <= x <= 1.0 } -> ");
+    printf("Enter x { -1.0 <= x <= 4.0 } -> ");
     scanf("%lf", &x);
-    if (-1.0 <= x && x <= 1.0)
+    if (-1.0 <= x && x <= 4.0)
     {
       double y = asin(4.0 - x) + log(log(x));
       double z = acos((2.0 * y) / (1.0 + y));
