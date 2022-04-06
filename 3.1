@@ -13,6 +13,9 @@ int main()
             f = sin(1 / (x * x));
         else
             f = x * x * atan(x);
+          printf("x = %lf\t f(x) = %lf\n", x, f);
+            x = x + h;
+            c++;
     }
     return 0;
 }
