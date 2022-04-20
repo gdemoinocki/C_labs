@@ -1,0 +1,33 @@
+#include <math.h>
+#include <stdio.h>
+double
+f(int n)
+{
+    double n;
+    double integraln = 0;
+    printf("Enter n ");
+    scanf("lf", &n);
+    double h = 2 / n;
+    double x;
+    for(x = 1 / n; x <= 2; x += h)
+    {
+        if(x <= 1)
+            f = pow(x, 2) atan(x);
+        else
+            f = sin(1 / pow(x, 2));
+        integraln += f;
+    }
+    integraln *= h;
+    int main() double e;
+    printf("Enter e ");
+    scanf("%lf", &e);
+    while(fabs(integral2n - integraln) / 3 >= e)
+
+    {
+        n          = n * 2;
+        integraln  = integral2n;
+        integral2n = f(2 * n)
+    }
+    printf("%lf", integral2n);
+    return 0;
+}
