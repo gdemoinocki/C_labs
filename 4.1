@@ -3,31 +3,35 @@
 double
 f(int n)
 {
-    double n;
-    double integraln = 0;
-    printf("Enter n ");
-    scanf("lf", &n);
-    double h = 2 / n;
+    double intg = 0.0;
+    double h = 2.0 / n;
     double x;
-    for(x = 1 / n; x <= 2; x += h)
+    for(x = 1.0 / n; x <= 2.0; x += h)
     {
-        if(x <= 1)
-            f = pow(x, 2) atan(x);
+    double z;
+        if(x <= 1.0)
+            z = x * x * atan(x);
         else
-            f = sin(1 / pow(x, 2));
-        integraln += f;
+            z = sin(1.0 / (x * x));
+        intg += z;
     }
-    integraln *= h;
-    int main() double e;
-    printf("Enter e ");
+    intg *= h;
+    return intg;
+}
+int main()
+{
+    double e;
+    printf("введите точность e ");
     scanf("%lf", &e);
-    while(fabs(integral2n - integraln) / 3 >= e)
-
+    int n = 1;
+    double intg  = f(n);
+    double intg2 = f(2 * n);
+    while(fabs(intg2 - intg) / 3 >= e)
     {
-        n          = n * 2;
-        integraln  = integral2n;
-        integral2n = f(2 * n)
+        n = n * 2;
+        intg  = intg2;
+        intg2 = f(n);
     }
-    printf("%lf", integral2n);
+    printf("%lf", intg2);
     return 0;
 }
