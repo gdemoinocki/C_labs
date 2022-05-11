@@ -3,36 +3,36 @@
 double
 f(int n)
 {
-    double z;
     double intg = 0.0;
-    double h    = 2 / n;
+    double h = 2.0 / n;
     double x;
-    for(x = 1 / n; x <= 2; x += h)
+    for(x = 1.0 / n; x <= 2.0; x += h)
     {
-        if(x <= 1)
-            z = pow(x, 2) * atan(x);
+    double z;
+        if(x <= 1.0)
+            z = x * x * atan(x);
         else
-            z = sin(1 / pow(x, 2));
+            z = sin(1.0 / (x * x));
         intg += z;
     }
     intg *= h;
     return intg;
 }
-int
-main()
+int main()
 {
     double e;
-    printf("Enter e ");
+    printf("введите точность e ");
     scanf("%lf", &e);
     int n = 1;
-    double intg  = 0;
-    double intg2 = 1;
+    double intg  = 0.0;
+    double intg2 = 1.0;
     while(fabs(intg2 - intg) / 3 >= e)
     {
         n = n * 2;
-        intg  = intg2;
-        intg2 = f(2 * n);
+        intg = intg2;
+        intg2 = f(n);
+        printf("%lf\n",intg );
     }
-    printf("%lf", intg2);
+    printf("%lf\n", intg2);
     return 0;
 }
