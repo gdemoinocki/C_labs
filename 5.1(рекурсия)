@@ -5,7 +5,7 @@ void recur(int n);
 int main() 
 {
     int n;
-    fprintf(stdout, "Введите число ", );
+    fprintf(stdout, "Введите число ");
     fscanf(stdin, &n);
     recur(n);
     puts("Рекурсия = ")
