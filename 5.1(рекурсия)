@@ -1,12 +1,13 @@
+#include <math.h>
 #include <stdio.h>
 
 void recur(int n);
 
-int main() 
+int main()
 {
     int n;
     fprintf(stdout, "Введите число ");
-    fscanf(stdin, &n);
+    fscanf(stdin, "%d", &n);
     recur(n);
     puts("Рекурсия = ");
 }
