@@ -2,7 +2,7 @@
 
 void recur(int n);
 
-int int main() 
+int main() 
 {
     int n;
     fprintf(stdout, "Введите число ", );
