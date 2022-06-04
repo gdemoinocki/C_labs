@@ -14,6 +14,5 @@ int main()
 
 void recur(int n)
 {
-  fprintf(stdout, "%d", n);
+  fprintf(stdout, "%d\n", n);
 }
-
