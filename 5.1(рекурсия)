@@ -9,7 +9,7 @@ int main()
     fprintf(stdout, "Введите число ");
     fscanf(stdin, "%d", &n);
     recur(n);
-    puts("Рекурсия = ");
+    puts("Рекурсия = \n");
 }
 
 void recur(int n)
