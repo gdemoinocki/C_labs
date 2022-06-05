@@ -9,7 +9,7 @@
     {
       p = p * 2;
     }
-    if (p == n)
+    if (p > 1 & p == n)
     {
         printf("Cycle: number is power of 2\n");
     }
