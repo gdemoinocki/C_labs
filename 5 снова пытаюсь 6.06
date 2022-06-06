@@ -1,0 +1,37 @@
+#include <math.h>
+#include <stdio.h>
+int recur(int x, int y)
+{
+  int z;
+  if (x > y)
+  {
+    y = y * 2;
+    recur(x, y);
+  }
+  else
+  {
+    z = (y == x) ? (printf("Recursion: number is power of 2\n")) : (printf("Recursion: number is not power of 2\n"));
+  }
+  return z;
+}
+int main()
+{
+  int p = 1;
+  unsigned int(n);
+  printf(" Enter number -> \n ");
+  scanf("%u", &n);
+  recur(n, p);
+  while (n > p)
+  {
+    p = p * 2;
+  }
+  if (p == n)
+  {
+    printf("Cycle: number is power of 2\n");
+  }
+  else
+  {
+    printf("Cycle: number is not power of 2\n");
+  }
+  return 0;
+}
