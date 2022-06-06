@@ -10,7 +10,7 @@ int recur(int x, int y)
   }
   else
   {
-    z = (y == x) ? 1 : 0;
+    z = (y == x) ? 1 : 0;//мб тут ошибка???
   }
   return z;
 }
