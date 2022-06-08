@@ -2,7 +2,6 @@
 #include <stdio.h>
 int recur(int x, int y)
 {
-  int z;
   if (x > y)
   {
       y = y * 2;
