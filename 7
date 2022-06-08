@@ -1,36 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-void fill(int N, int array[][N])
+void step_1(int N, int array[][N])
 {
     for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-            array[i][j] = rand() % 10;
+    for (int j = 0; j < N; j++)
+    array[i][j] = rand() % 10;
 }
-
-void out(int N, int arr[][N])
+void step_2(int N, int arr[][N])
 {
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < N; j++)
-            printf("%7d", arr[i][j]);
+        printf("%8d", arr[i][j]);
         printf("\n");
     }
     printf("\n");
 }
-
-void umnozhen(int N, int A[][N], int B[][N], int C[][N])
+void step_3(int N, int A[][N], int B[][N], int C[][N])
 {
     for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-        {
-            C[i][j] = 0;
-            for (int k = 0; k < N; k++)
-                C[i][j] += A[i][k] * B[k][j];
-        }
+    for (int j = 0; j < N; j++)
+    {
+          C[i][j] = 0;
+          for (int k = 0; k < N; k++)
+          C[i][j] += A[i][k] * B[k][j];
+    }
 }
-
 int main()
 {
     srand(time(NULL));
@@ -38,15 +34,14 @@ int main()
     printf("enter the size\n");
     scanf("%d", &N);
     int A[N][N], B[N][N], C[N][N];
-    fill(N, A);
-    fill(N, B);
+    step_1(N, A);
+    step_1(N, B);
     printf("first \n");
-    out(N, A);
+    step_2(N, A);
     printf("second \n");
-    out(N, B);
-    umnozhen(N, A, B, C);
+    step_2(N, B);
+    step_3(N, A, B, C);
     printf("result \n");
-    out(N, C);
-
+    step_2(N, C);
     return 0;
 }
