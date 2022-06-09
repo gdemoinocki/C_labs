@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void step_1(int N, int array[])
+{
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            array[i * N + j] = rand() % 10 + 1;
+}
+void step_2(int N, int arr[])
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < N; j++)
+        {
+            printf("%8d", arr[i * N + j]);
+        }
+            printf("\n");
+    }
+    printf("\n");
+}
+void step_3(int N, int A[], int B[], int C[])
+{
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+        {
+              C[i * N + j] = 0;
+              for (int k = 0; k < N; k++)
+                C[i * N + j] += A[i * N + k] * B[k * N + j];
+        }
+}
+int main()
+{
+    srand(time(NULL));
+    int N;
+    printf("enter the size\n");
+    scanf("%d", &N);
+    int * A = (int *)malloc(N * N * sizeof(int));
+    int * B = (int *)malloc(N * N * sizeof(int));
+    int * C = (int *)malloc(N * N * sizeof(int));
+    if (!A || !B || !C)
+    {
+        printf("Memory allocation error\n");
+        exit(EXIT_FAILURE);
+    }
+    step_1(N, A);
+    step_1(N, B);
+    printf("first \n");
+    step_2(N, A);
+    printf("second \n");
+    step_2(N, B);
+    step_3(N, A, B, C);
+    printf("result \n");
+    step_2(N, C);
+    free(A);
+    free(B);
+    free(C);
+    return 0;
+}
