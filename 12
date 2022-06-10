@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct shop shop;
+
+struct shop
+{
+    char name[256];
+    char adress[256];
+    char items[256];
+    int discount;
+};
+
+void add_note(shop shop_q[], int n)
+{
+
+    char note[256];
+    printf("Enter name -> ");
+    fgets(note, 100, stdin);
+    note[strlen(note) - 1] = 0;
+    sprintf(shop_q[n].name, "%s", note);
+
+    printf("Enter adress -> ");
+    fgets(note, 100, stdin);
+    note[strlen(note) - 1] = 0;
+    sprintf(shop_q[n].adress, "%s", note);
+
+    printf("Enter item -> ");
+    fgets(note, 100, stdin);
+    note[strlen(note) - 1] = 0;
+    sprintf(shop_q[n].items, "%s", note);
+
+    printf("Enter discount -> ");
+    scanf("%d", &shop_q[n].discount);
+
+    fgets(note, 10, stdin);
+}
+
+void all_notes(shop shop_q[], int n)
+{
+    for (int i = 0; i < n; i++)
+        printf("%d note: name: %s, adress: %s, item: %s, discount is: %d\n", i + 1, shop_q[i].name, shop_q[i].adress, shop_q[i].items, shop_q[i].discount);
+}
+
+void del_note(shop shop_q[], int n, int del)
+{
+    for (int i = del; i < n - 1; i++)
+    {
+        shop temp = shop_q[i];
+        shop_q[i] = shop_q[i + 1];
+        shop_q[i + 1] = temp;
+    }
+}
+
+int file_input(FILE *f, shop sp[])
+{
+    char str[256];
+    char *istr;
+    int count = 0;
+    while (fgets(str, 256, f) != NULL)
+    {
+        istr = strtok(str, ";");
+        sprintf(sp[count].name, "%s", istr);
+        istr = strtok(NULL, ";");
+        sprintf(sp[count].adress, "%s", istr);
+        istr = strtok(NULL, ";");
+        sprintf(sp[count].items, "%s", istr);
+        istr = strtok(NULL, ";");
+        sp[count].discount = atoi(istr);
+        istr = strtok(NULL, ";");
+        count++;
+    }
+    return count;
+}
+
+void file_output(FILE *f, shop sp[], int count)
+{
+    for (int i = 0; i < count; i++)
+        fprintf(f, "%s;%s;%s;%d;%d;%d;%d\n", sp[i].name, sp[i].adress, sp[i].items, sp[i].discount);
+}
+
+int main()
+{
+    int count = 0;
+    int del;
+    char *query = (char *)malloc(sizeof(char) * 100);
+    struct shop shop_q[50];
+    FILE *file = fopen("input.txt", "r");
+    count = file_input(file, shop_q);
+    fclose(file);
+
+    printf("Enter \"q\" if you watn to quit\n");
+    printf("Enter \"add\" if you want to add a new note\n");
+    printf("Enter \"del\" and then number of note if you want to delete a note\n");
+    printf("Enter \"ls\" if you want to see all notes\n");
+
+    while (strcmp(query, "q"))
+    {
+        printf("-> ");
+        fgets(query, 100, stdin);
+        query[strlen(query) - 1] = 0;
+        if (!strcmp(query, "add"))
+        {
+            add_note(shop_q, count);
+            count++;
+        }
+        else if (!strcmp(query, "ls"))
+            all_notes(shop_q, count);
+        else if (!strcmp(query, "del"))
+        {
+            printf("Enter a number of note you want to delete -> ");
+            scanf("%d", &del);
+            fgets(query, 10, stdin);
+            del_note(shop_q, count, del - 1);
+            count--;
+        }
+    }
+    file = fopen("input.txt", "w");
+    file_output(file, shop_q, count);
+    fclose(file);
+    free(query);
+    return 0;
+}
