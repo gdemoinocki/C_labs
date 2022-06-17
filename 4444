@@ -1,0 +1,13 @@
+void print_month_notes(frend frends[], int count, int month){
+  if(!count){
+    printf("Список пуст\n");
+  }
+  else if(month > 12){
+    printf("Некорректно введен месяц (допустимые значения от 1 до 12)\n");
+  }
+  else{
+    for(int i = 0; i < count; i++){
+      if(frends[i].date_birth.tm_mon + 1 == month){
+        char date_b[15];
+        strftime(date_b, 15, "%d.%m.%Y", &frends[i].date_birth);
+        printf("%d. Фамилия: %s; Имя: %s; Отчество: %s; Дата рождения: %s; Адресс: %s; Номер телефона: %s\n", i + 1, frends[i].surname, frends[i].first_name, frends[i].midle_name, date_b, frends[i].address, frends[i].phone_number);
