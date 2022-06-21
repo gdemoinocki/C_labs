@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <termios.h>
+#include <unistd.h>
+#include <ctype.h>
+
+int mygetch() {
+    struct termios oldt, newt;
+    int c;
+    tcgetattr(STDIN_FILENO, &oldt);
+    newt = oldt;
+    newt.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+    c = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    return c;
+}
+
+int main(){
+    int len = 0, n = 0;
+    for (;;){
+        int a, c = mygetch();
+        char asciiChar = c;
+        printf("%c", asciiChar);
+        if (c != 27){
+            if (isalpha(c))
+                n++;
+            else
+                len++;
+        }
+        else{
+            printf("\nvEnd, count_alpha = %d", n);
+            break;
+        }
+    }
+    return 0;
+}
