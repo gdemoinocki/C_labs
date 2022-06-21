@@ -43,6 +43,7 @@ void all_notes(shop shop_q[], int n)
         printf("%d note: name: %s, adress: %s, item: %s, discount is: %d\n", i + 1, shop_q[i].name, shop_q[i].adress, shop_q[i].items, shop_q[i].discount);
 }
 
+
 void del_note(shop shop_q[], int n, int del)
 {
     for (int i = del; i < n - 1; i++)
@@ -52,16 +53,19 @@ void del_note(shop shop_q[], int n, int del)
         shop_q[i + 1] = temp;
     }
 }
-void print_month_notes(shop shop_q[], int count, int sale вот тут чет глянуть)
+void best_sale(shop shop_q[], int count)
 {
-        for(int i = 0; i < count; i++) и тут
+        for(int i = 0; i < count; i++)
         {
-            if(shop_q[i].discount.tm_mon + 1 == sale)
-            {
-                char discount[15];
-                strftime(discount, 15, "%d.%m.%Y", &shop_q[i].discount);
-                printf("%d note: name: %s, adress: %s, item: %s, discount is: %d\n", i + 1, shop_q[i].name, shop_q[i].adress, shop_q[i].items, shop_q[i].discount);
+            for (int j = 0; j < count; j++) {
+                if (shop_q[i].discount > shop_q[j].discount) {
+                    printf("%d note: name: %s, adress: %s, item: %s, discount is: %d\n", i + 1, shop_q[i].name,
+                           shop_q[i].adress, shop_q[i].items, shop_q[i].discount);
+                }
             }
+        }
+}
+
 int file_input(FILE *f, shop sp[])
 {
     char str[256];
@@ -124,6 +128,10 @@ int main()
             del_note(shop_q, count, del - 1);
             count--;
         }
+        else if (!strcmp(query, "z"))
+        {
+            best_sale(shop_q, count);
+        }
     }
     file = fopen("input.txt", "w");
     file_output(file, shop_q, count);
@@ -131,3 +139,4 @@ int main()
     free(query);
     return 0;
 }
+
