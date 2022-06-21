@@ -1,43 +1,37 @@
-#include <ctype.h>
 #include <stdio.h>
-#include <termios.h>
-#include <unistd.h>
-#include <stdio_ext.h>
-
-int mygetch()
-{
-  struct termios oldt, newt;
-  int c;
-  tcgetattr(STDIN_FILENO, &oldt);
-  newt = oldt;
-  newt.c_lflag &= ~(ICANON | ECHO);
-  tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-  c = getchar();
-  tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-  return c;
-}
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <conio.h>
 
 int main()
 {
-  char c;
-  while(1)
-  {
-    c = mygetch();
-    if (c != 127 && c != 27)
-    {
-      if (isdigit(c))
-      {
-        c++;
-        if (c == 58)
-          c -=10;
+  system("chcp 65001");
+  printf("Введите строку: \n");
+  int count_alpha = 0;
+  unsigned char c;
+  while(1){
+    // Обработка PageUP
+    c = getch();
+    if(c == 0){
+      c = getch();
+      if(c == 73){
+        break;
       }
-      printf("%c", c);
     }
-    else
-      if (c == 127)
-        return 0;
-      else if (c == 27)
-        __fpurge(stdin);
+    // Обработка F10-F12
+    else if(c == 224){
+      c = getch();
+      continue;
+    }
+    // Подсчет букв и вывод символов
+    else{
+      if(isalpha(c))
+        count_alpha++;
+      if(c != 13)
+        printf("%c", c);
+    }
   }
+  printf("\nВведено букв: %d\n", count_alpha);
   return 0;
 }
